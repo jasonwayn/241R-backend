@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require('path');
 
-// directoryPath를 현재 파일의 상위 디렉토리로 설정
+
 const directoryPath = path.dirname(__dirname);
 
 function printAllFiles(directory) {
@@ -21,10 +21,8 @@ function printAllFiles(directory) {
         }
 
         if (stats.isDirectory()) {
-          // 디렉토리인 경우 하위 디렉토리를 재귀적으로 탐색
           printAllFiles(filePath);
-        } else if (stats.isFile()) {
-          // 파일인 경우 파일 경로를 출력
+        } else if (stats.isFile() && file.endsWith('.js')) {
           console.log('File:', filePath);
         }
       });
@@ -32,5 +30,4 @@ function printAllFiles(directory) {
   });
 }
 
-// 시작 디렉토리에서 탐색 시작
 printAllFiles(directoryPath);
